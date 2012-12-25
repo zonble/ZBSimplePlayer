@@ -1,0 +1,255 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D4B90AF21689F46A006074CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B90AF11689F46A006074CF /* Foundation.framework */; };
+		D4B90AF51689F46A006074CF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B90AF41689F46A006074CF /* main.m */; };
+		D4B90AF91689F46A006074CF /* SimplePlayer.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = D4B90AF81689F46A006074CF /* SimplePlayer.1 */; };
+		D4B90B011689F4A3006074CF /* ZBSimplePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B90B001689F4A3006074CF /* ZBSimplePlayer.m */; };
+		D4B90B031689F4C5006074CF /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B90B021689F4C5006074CF /* CoreAudio.framework */; };
+		D4B90B051689F4CB006074CF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B90B041689F4CB006074CF /* AudioToolbox.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D4B90AEB1689F46A006074CF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				D4B90AF91689F46A006074CF /* SimplePlayer.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D4B90AED1689F46A006074CF /* SimplePlayer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SimplePlayer; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4B90AF11689F46A006074CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D4B90AF41689F46A006074CF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D4B90AF71689F46A006074CF /* SimplePlayer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimplePlayer-Prefix.pch"; sourceTree = "<group>"; };
+		D4B90AF81689F46A006074CF /* SimplePlayer.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = SimplePlayer.1; sourceTree = "<group>"; };
+		D4B90AFF1689F4A3006074CF /* ZBSimplePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBSimplePlayer.h; sourceTree = "<group>"; };
+		D4B90B001689F4A3006074CF /* ZBSimplePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBSimplePlayer.m; sourceTree = "<group>"; };
+		D4B90B021689F4C5006074CF /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		D4B90B041689F4CB006074CF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D4B90AEA1689F46A006074CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4B90B051689F4CB006074CF /* AudioToolbox.framework in Frameworks */,
+				D4B90B031689F4C5006074CF /* CoreAudio.framework in Frameworks */,
+				D4B90AF21689F46A006074CF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D4B90AE21689F46A006074CF = {
+			isa = PBXGroup;
+			children = (
+				D4B90AF31689F46A006074CF /* SimplePlayer */,
+				D4B90AF01689F46A006074CF /* Frameworks */,
+				D4B90AEE1689F46A006074CF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D4B90AEE1689F46A006074CF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D4B90AED1689F46A006074CF /* SimplePlayer */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D4B90AF01689F46A006074CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D4B90B041689F4CB006074CF /* AudioToolbox.framework */,
+				D4B90B021689F4C5006074CF /* CoreAudio.framework */,
+				D4B90AF11689F46A006074CF /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4B90AF31689F46A006074CF /* SimplePlayer */ = {
+			isa = PBXGroup;
+			children = (
+				D4B90AFF1689F4A3006074CF /* ZBSimplePlayer.h */,
+				D4B90B001689F4A3006074CF /* ZBSimplePlayer.m */,
+				D4B90AF41689F46A006074CF /* main.m */,
+				D4B90AF81689F46A006074CF /* SimplePlayer.1 */,
+				D4B90AF61689F46A006074CF /* Supporting Files */,
+			);
+			path = SimplePlayer;
+			sourceTree = "<group>";
+		};
+		D4B90AF61689F46A006074CF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D4B90AF71689F46A006074CF /* SimplePlayer-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D4B90AEC1689F46A006074CF /* SimplePlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4B90AFC1689F46A006074CF /* Build configuration list for PBXNativeTarget "SimplePlayer" */;
+			buildPhases = (
+				D4B90AE91689F46A006074CF /* Sources */,
+				D4B90AEA1689F46A006074CF /* Frameworks */,
+				D4B90AEB1689F46A006074CF /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimplePlayer;
+			productName = SimplePlayer;
+			productReference = D4B90AED1689F46A006074CF /* SimplePlayer */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D4B90AE41689F46A006074CF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = zonble;
+			};
+			buildConfigurationList = D4B90AE71689F46A006074CF /* Build configuration list for PBXProject "SimplePlayer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D4B90AE21689F46A006074CF;
+			productRefGroup = D4B90AEE1689F46A006074CF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D4B90AEC1689F46A006074CF /* SimplePlayer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D4B90AE91689F46A006074CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4B90AF51689F46A006074CF /* main.m in Sources */,
+				D4B90B011689F4A3006074CF /* ZBSimplePlayer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D4B90AFA1689F46A006074CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D4B90AFB1689F46A006074CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D4B90AFD1689F46A006074CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimplePlayer/SimplePlayer-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D4B90AFE1689F46A006074CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimplePlayer/SimplePlayer-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D4B90AE71689F46A006074CF /* Build configuration list for PBXProject "SimplePlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4B90AFA1689F46A006074CF /* Debug */,
+				D4B90AFB1689F46A006074CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4B90AFC1689F46A006074CF /* Build configuration list for PBXNativeTarget "SimplePlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4B90AFD1689F46A006074CF /* Debug */,
+				D4B90AFE1689F46A006074CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D4B90AE41689F46A006074CF /* Project object */;
+}
