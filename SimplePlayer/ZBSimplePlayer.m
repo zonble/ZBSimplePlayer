@@ -120,7 +120,7 @@ typedef struct {
 	if (readHead == packetCount) {
 		// 第六步：已經把所有 packet 都播完了，檔案播放結束。
 		if (playerStatus.loaded) {
-			AudioQueueStart(outputQueue, NULL);
+			AudioQueueStop(outputQueue, false);
 			playerStatus.stopped = YES;
 			return;
 		}
