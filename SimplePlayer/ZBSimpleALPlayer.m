@@ -2,7 +2,7 @@
 
 static void ZBAudioFileStreamPropertyListener(void * inClientData, AudioFileStreamID inAudioFileStream, AudioFileStreamPropertyID inPropertyID, UInt32 * ioFlags);
 static void ZBAudioFileStreamPacketsCallback(void * inClientData, UInt32 inNumberBytes, UInt32 inNumberPackets, const void * inInputData, AudioStreamPacketDescription *inPacketDescriptions);
-OSStatus ZBMP3DataPlayerConverterFiller (AudioConverterRef inAudioConverter, UInt32* ioNumberDataPackets, AudioBufferList* ioData, AudioStreamPacketDescription** outDataPacketDescription, void* inUserData);
+static OSStatus ZBPlayerConverterFiller (AudioConverterRef inAudioConverter, UInt32* ioNumberDataPackets, AudioBufferList* ioData, AudioStreamPacketDescription** outDataPacketDescription, void* inUserData);
 
 typedef struct {
 	size_t length;
@@ -159,17 +159,19 @@ typedef struct {
 	}
 
 
-	UInt32 packetSize = 44100 * 2 * 60 * 10; // Really bad, bad idea...
+	CGFloat second = ((CGFloat)inPacketCount / [self framePerSecond]);;
+	UInt32 packetSize = 44100 * second * 4;
+	NSLog(@"%d", packetSize);
 
 	AudioBufferList *list = (AudioBufferList *)calloc(1, sizeof(UInt32) + sizeof(AudioBuffer));
 
 	list->mNumberBuffers = 1;
 	list->mBuffers[0].mNumberChannels = 0;
-	list->mBuffers[0].mDataByteSize = 44100 * 2 * 60 * 10;
-	list->mBuffers[0].mData = calloc(1, 44100 * 2 * 60 * 10);
+	list->mBuffers[0].mDataByteSize = packetSize;
+	list->mBuffers[0].mData = calloc(1, packetSize);
 
 	OSStatus status;
-	status = AudioConverterFillComplexBuffer(converter, ZBMP3DataPlayerConverterFiller, self, &packetSize, list, NULL);
+	status = AudioConverterFillComplexBuffer(converter, ZBPlayerConverterFiller, self, &packetSize, list, NULL);
 
 
 	ALuint bufferID;
@@ -180,18 +182,20 @@ typedef struct {
 		alGenSources(1, &sourceID);
 		NSLog(@"the id is %i", sourceID);
 //		alSourceQueueBuffers(sourceID, 1, &bufferID);
+
 		alSourcei(sourceID, AL_BUFFER, bufferID);
-		alSourcef(sourceID, AL_PITCH, 1.0f);
-		alSourcef(sourceID, AL_GAIN, 1.0f);
-		alSource3f(sourceID, AL_POSITION, 3.0, 0.5, 1.5);
-		alSourcei(sourceID, AL_SOURCE_TYPE, AL_STREAMING);
+//		alSourcef(sourceID, AL_PITCH, 3.0f);
+//		alSourcef(sourceID, AL_GAIN, 1.0f);
+//		alSource3f(sourceID, AL_POSITION, 3.0, 0.5, 1.5);
+//		alSourcei(sourceID, AL_SOURCE_TYPE, AL_STREAMING);
+
 		alSourcePlay(sourceID);
 
 	}
 //	[self performSelector:@selector(enqueue) withObject:nil afterDelay:10.0];
 }
 
-- (void)_createAudioQueueWithAudioStreamDescription:(AudioStreamBasicDescription *)audioStreamBasicDescription
+- (void)_createAudioConverterWithAudioStreamDescription:(AudioStreamBasicDescription *)audioStreamBasicDescription
 {
 	memcpy(&streamDescription, audioStreamBasicDescription, sizeof(AudioStreamBasicDescription));
 	mDevice = alcOpenDevice(NULL);
@@ -260,7 +264,7 @@ void ZBAudioFileStreamPropertyListener(void * inClientData, AudioFileStreamID in
 		NSLog(@"mChannelsPerFrame: %u", audioStreamDescription.mChannelsPerFrame);
 		NSLog(@"mBitsPerChannel: %u", audioStreamDescription.mBitsPerChannel);
 		NSLog(@"mReserved: %u", audioStreamDescription.mReserved);
-		[self _createAudioQueueWithAudioStreamDescription:&audioStreamDescription];
+		[self _createAudioConverterWithAudioStreamDescription:&audioStreamDescription];
 	}
 }
 
@@ -270,7 +274,7 @@ void ZBAudioFileStreamPacketsCallback(void * inClientData, UInt32 inNumberBytes,
 	[self _storePacketsWithNumberOfBytes:inNumberBytes numberOfPackets:inNumberPackets inputData:inInputData packetDescriptions:inPacketDescriptions];
 }
 
-OSStatus ZBMP3DataPlayerConverterFiller (AudioConverterRef inAudioConverter, UInt32* ioNumberDataPackets, AudioBufferList* ioData, AudioStreamPacketDescription** outDataPacketDescription, void* inUserData)
+OSStatus ZBPlayerConverterFiller (AudioConverterRef inAudioConverter, UInt32* ioNumberDataPackets, AudioBufferList* ioData, AudioStreamPacketDescription** outDataPacketDescription, void* inUserData)
 {
 	ZBSimpleALPlayer *self = (ZBSimpleALPlayer *)inUserData;
 	*ioNumberDataPackets = 1;

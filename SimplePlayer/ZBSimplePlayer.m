@@ -5,7 +5,6 @@ static void ZBAudioFileStreamPacketsCallback(void * inClientData, UInt32 inNumbe
 static void ZBAudioQueueOutputCallback(void * inUserData, AudioQueueRef inAQ,AudioQueueBufferRef inBuffer);
 static void ZBAudioQueueRunningListener(void * inUserData, AudioQueueRef inAQ, AudioQueuePropertyID inID);
 
-
 typedef struct {
 	size_t length;
 	void *data;
