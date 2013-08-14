@@ -8,5 +8,6 @@
 - (double)framePerSecond;
 
 @property (readonly, getter=isStopped) BOOL stopped;
+@property (assign, nonatomic) NSInteger semitones;
 
 @end

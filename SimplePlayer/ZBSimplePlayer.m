@@ -54,7 +54,8 @@ typedef struct {
 	if (self) {
 		playerStatus.stopped = NO;
 		packetCount = 0;
-		maxPacketCount = 10240;
+//		maxPacketCount = 10240;
+		maxPacketCount = 20480;
 		packetData = (ZBPacketData *)calloc(maxPacketCount, sizeof(ZBPacketData));
 
 		// 第一步：建立 Audio Parser，指定 callback，以及建立 HTTP 連線，

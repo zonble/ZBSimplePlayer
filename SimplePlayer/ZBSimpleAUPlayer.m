@@ -1,4 +1,5 @@
 #import "ZBSimpleAUPlayer.h"
+#include "smbPitchShift.cpp"
 
 static void ZBAudioFileStreamPropertyListener(void * inClientData, AudioFileStreamID inAudioFileStream, AudioFileStreamPropertyID inPropertyID, UInt32 * ioFlags);
 static void ZBAudioFileStreamPacketsCallback(void * inClientData, UInt32 inNumberBytes, UInt32 inNumberPackets, const void * inInputData, AudioStreamPacketDescription *inPacketDescriptions);
@@ -22,13 +23,20 @@ AudioStreamBasicDescription LFPCMStreamDescription()
 	bzero(&destFormat, sizeof(AudioStreamBasicDescription));
 	destFormat.mSampleRate = 44100.0;
 	destFormat.mFormatID = kAudioFormatLinearPCM;
-	destFormat.mFormatFlags = kLinearPCMFormatFlagIsBigEndian | kLinearPCMFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
-	destFormat.mFramesPerPacket = 1;
-	destFormat.mBytesPerPacket = 4;
-	destFormat.mBytesPerFrame = 4;
-	destFormat.mChannelsPerFrame = 2;
-	destFormat.mBitsPerChannel = 16;
+//	destFormat.mFormatFlags = kLinearPCMFormatFlagIsBigEndian | kLinearPCMFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
+//	destFormat.mFramesPerPacket = 1;
+//	destFormat.mBytesPerPacket = 4;
+//	destFormat.mBytesPerFrame = 4;
+//	destFormat.mChannelsPerFrame = 2;
+//	destFormat.mBitsPerChannel = 16;
 	destFormat.mReserved = 0;
+
+	destFormat.mFormatFlags = kLinearPCMFormatFlagIsFloat;
+	destFormat.mBitsPerChannel = sizeof(Float32) * 8;
+	destFormat.mChannelsPerFrame = 1;
+	destFormat.mBytesPerFrame = destFormat.mChannelsPerFrame * sizeof(Float32);
+	destFormat.mFramesPerPacket = 1;
+	destFormat.mBytesPerPacket = destFormat.mFramesPerPacket * destFormat.mBytesPerFrame;
 
 	return destFormat;
 }
@@ -86,9 +94,12 @@ AudioStreamBasicDescription LFPCMStreamDescription()
 {
 	self = [super init];
 	if (self) {
+		self.semitones = 0;
+
 		playerStatus.stopped = YES;
 		packetCount = 0;
-		maxPacketCount = 10240;
+//		maxPacketCount = 10240;
+		maxPacketCount = 20480;
 		packetData = (ZBPacketData *)calloc(maxPacketCount, sizeof(ZBPacketData));
 
 		UInt32 second = 5;
@@ -226,10 +237,8 @@ AudioStreamBasicDescription LFPCMStreamDescription()
 	@synchronized (self) {
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		UInt32 packetSize = inPacketCount;
-		//	NSLog(@"inNumberFrames %lu", inNumberFrames);
 		OSStatus status = AudioConverterFillComplexBuffer(converter, ZBPlayerConverterFiller, self, &packetSize, list, NULL);
 		if (noErr != status || !packetSize) {
-//			AudioUnitSetParameter(self->outputUnit, kHALOutputParam_Volume, kAudioUnitScope_Global, 0, 0.0, 0);
 			playerStatus.stopped = YES;
 			AUGraphStop(audioGraph);
 			AudioConverterReset(self->converter);
@@ -240,6 +249,8 @@ AudioStreamBasicDescription LFPCMStreamDescription()
 			AudioUnitSetParameter(outputUnit, kHALOutputParam_Volume, kAudioUnitScope_Global, 0, 0.0, 0);
 		}
 		else if (!self->playerStatus.stopped) {
+			float pitchShift = pow(2., self.semitones/12.);
+			smbPitchShift(pitchShift, packetSize, 2048, 4, 44100.0, self->list->mBuffers[0].mData, self->list->mBuffers[0].mData);
 			ioData->mNumberBuffers = 1;
 			ioData->mBuffers[0].mNumberChannels = 2;
 			ioData->mBuffers[0].mDataByteSize = self->list->mBuffers[0].mDataByteSize;
@@ -293,16 +304,15 @@ AudioStreamBasicDescription LFPCMStreamDescription()
 
 	if (readHead == 0 & packetCount > (int)([self framePerSecond] * 12)) {
 		if (playerStatus.stopped) {
-//			NSLog(@"start audio graph :%p", audioGraph);
 			self->playerStatus.stopped = NO;
 			AudioConverterReset(converter);
 			OSStatus status = AUGraphStart(audioGraph);
 			assert(noErr == status);
 		}
-//		[self _enqueueDataWithPacketsCount: (int)([self framePerSecond] * 10)];
 	}
 }
 
+@synthesize semitones;
 
 @end
 

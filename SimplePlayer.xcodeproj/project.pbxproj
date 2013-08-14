@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D479EB0217ABF50400029E82 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D479EB0117ABF50400029E82 /* libc++.dylib */; };
 		D4B90AF21689F46A006074CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B90AF11689F46A006074CF /* Foundation.framework */; };
 		D4B90AF51689F46A006074CF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B90AF41689F46A006074CF /* main.m */; };
 		D4B90AF91689F46A006074CF /* SimplePlayer.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = D4B90AF81689F46A006074CF /* SimplePlayer.1 */; };
@@ -15,6 +16,7 @@
 		D4B90B051689F4CB006074CF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B90B041689F4CB006074CF /* AudioToolbox.framework */; };
 		D4D36308168B384600AB1B81 /* ZBSimpleALPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D36307168B37D800AB1B81 /* ZBSimpleALPlayer.m */; };
 		D4D3630A168B38EF00AB1B81 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D36309168B38EF00AB1B81 /* OpenAL.framework */; };
+		D4D6D43517BBC22400B861CD /* smbPitchShift.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4D6D43417BBC22400B861CD /* smbPitchShift.cpp */; };
 		D4D903FC175E245A005F4169 /* ZBSimpleAUPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D903FB175E245A005F4169 /* ZBSimpleAUPlayer.m */; };
 		D4D90417175E3708005F4169 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D90416175E3708005F4169 /* AudioUnit.framework */; };
 /* End PBXBuildFile section */
@@ -33,6 +35,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D479EB0117ABF50400029E82 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		D4B90AED1689F46A006074CF /* SimplePlayer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SimplePlayer; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B90AF11689F46A006074CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D4B90AF41689F46A006074CF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -45,6 +48,7 @@
 		D4D36306168B37D800AB1B81 /* ZBSimpleALPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZBSimpleALPlayer.h; sourceTree = "<group>"; };
 		D4D36307168B37D800AB1B81 /* ZBSimpleALPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZBSimpleALPlayer.m; sourceTree = "<group>"; };
 		D4D36309168B38EF00AB1B81 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		D4D6D43417BBC22400B861CD /* smbPitchShift.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = smbPitchShift.cpp; sourceTree = "<group>"; };
 		D4D903FA175E245A005F4169 /* ZBSimpleAUPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBSimpleAUPlayer.h; sourceTree = "<group>"; };
 		D4D903FB175E245A005F4169 /* ZBSimpleAUPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBSimpleAUPlayer.m; sourceTree = "<group>"; };
 		D4D90416175E3708005F4169 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
@@ -55,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D479EB0217ABF50400029E82 /* libc++.dylib in Frameworks */,
 				D4D90417175E3708005F4169 /* AudioUnit.framework in Frameworks */,
 				D4D3630A168B38EF00AB1B81 /* OpenAL.framework in Frameworks */,
 				D4B90B051689F4CB006074CF /* AudioToolbox.framework in Frameworks */,
@@ -86,6 +91,7 @@
 		D4B90AF01689F46A006074CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D479EB0117ABF50400029E82 /* libc++.dylib */,
 				D4D90416175E3708005F4169 /* AudioUnit.framework */,
 				D4D36309168B38EF00AB1B81 /* OpenAL.framework */,
 				D4B90B041689F4CB006074CF /* AudioToolbox.framework */,
@@ -98,6 +104,7 @@
 		D4B90AF31689F46A006074CF /* SimplePlayer */ = {
 			isa = PBXGroup;
 			children = (
+				D4D6D43417BBC22400B861CD /* smbPitchShift.cpp */,
 				D4B90AFF1689F4A3006074CF /* ZBSimplePlayer.h */,
 				D4B90B001689F4A3006074CF /* ZBSimplePlayer.m */,
 				D4D903FA175E245A005F4169 /* ZBSimpleAUPlayer.h */,
@@ -170,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4D6D43517BBC22400B861CD /* smbPitchShift.cpp in Sources */,
 				D4B90AF51689F46A006074CF /* main.m in Sources */,
 				D4B90B011689F4A3006074CF /* ZBSimplePlayer.m in Sources */,
 				D4D36308168B384600AB1B81 /* ZBSimpleALPlayer.m in Sources */,
@@ -205,7 +213,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -227,7 +235,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
