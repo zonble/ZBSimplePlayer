@@ -244,18 +244,18 @@ AudioStreamBasicDescription LFPCMStreamDescription()
 			AudioConverterReset(self->converter);
 			list->mNumberBuffers = 1;
 			list->mBuffers[0].mNumberChannels = 2;
-			list->mBuffers[0].mDataByteSize = renderBufferSize;
+			list->mBuffers[0].mDataByteSize = (UInt32)renderBufferSize;
 			bzero(list->mBuffers[0].mData, renderBufferSize);
 			AudioUnitSetParameter(outputUnit, kHALOutputParam_Volume, kAudioUnitScope_Global, 0, 0.0, 0);
 		}
 		else if (!self->playerStatus.stopped) {
 			float pitchShift = pow(2., self.semitones/12.);
-			smbPitchShift(pitchShift, packetSize, 2048, 4, 44100.0, self->list->mBuffers[0].mData, self->list->mBuffers[0].mData);
+			smbPitchShift(pitchShift, packetSize, 2048, 32, 44100.0, self->list->mBuffers[0].mData, self->list->mBuffers[0].mData);
 			ioData->mNumberBuffers = 1;
 			ioData->mBuffers[0].mNumberChannels = 2;
 			ioData->mBuffers[0].mDataByteSize = self->list->mBuffers[0].mDataByteSize;
 			ioData->mBuffers[0].mData = self->list->mBuffers[0].mData;
-			list->mBuffers[0].mDataByteSize = renderBufferSize;
+			list->mBuffers[0].mDataByteSize = (UInt32)renderBufferSize;
 			result = noErr;
 		}
 		[pool drain];
@@ -356,7 +356,6 @@ OSStatus ZBPlayerConverterFiller (AudioConverterRef inAudioConverter, UInt32* io
 	return noErr;
 }
 
-
 OSStatus ZBPlayerAURenderCallback(void *inUserData, AudioUnitRenderActionFlags *ioActionFlags, const AudioTimeStamp *inTimeStamp, UInt32 inBusNumber, UInt32 inNumberFrames, AudioBufferList *ioData)
 {
 //	NSLog(@"%s", __PRETTY_FUNCTION__);
@@ -366,7 +365,7 @@ OSStatus ZBPlayerAURenderCallback(void *inUserData, AudioUnitRenderActionFlags *
 
 void ZBAudioUnitPropertyListenerProc(void *inRefCon, AudioUnit ci, AudioUnitPropertyID inID, AudioUnitScope inScope, AudioUnitElement inElement)
 {
-	ZBSimpleAUPlayer *self = (ZBSimpleAUPlayer *)inRefCon;
+	__unused ZBSimpleAUPlayer *self = (ZBSimpleAUPlayer *)inRefCon;
 	UInt32 property = 0;
 	UInt32 propertySize = sizeof(property);
 	AudioUnitGetProperty(ci, kAudioOutputUnitProperty_IsRunning, inScope, inElement, &property, &propertySize);
