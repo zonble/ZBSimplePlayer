@@ -31,6 +31,7 @@ typedef struct {
 - (void)dealloc
 {
 	AudioQueueReset(outputQueue);
+	AudioQueueDispose(outputQueue, true);
 	AudioFileStreamClose(audioFileStreamID);
 
 	for (size_t index = 0 ; index < packetCount ; index++) {
@@ -167,6 +168,13 @@ typedef struct {
 	memcpy(&streamDescription, audioStreamBasicDescription, sizeof(AudioStreamBasicDescription));
 	OSStatus status = AudioQueueNewOutput(audioStreamBasicDescription, ZBAudioQueueOutputCallback, self, CFRunLoopGetCurrent(), kCFRunLoopCommonModes, 0, &outputQueue);
 	assert(status == noErr);
+
+	UInt32 trueValue = 1;
+	AudioQueueSetProperty(outputQueue, kAudioQueueProperty_EnableTimePitch, &trueValue, sizeof(trueValue));
+	UInt32 timePitchAlgorithm = kAudioQueueTimePitchAlgorithm_Spectral;
+	AudioQueueSetProperty(outputQueue, kAudioQueueProperty_TimePitchAlgorithm, &timePitchAlgorithm, sizeof(timePitchAlgorithm));
+	status = AudioQueueSetParameter(outputQueue, kAudioQueueParam_Pitch, 300.0);
+
 	status = AudioQueueAddPropertyListener(outputQueue, kAudioQueueProperty_IsRunning, ZBAudioQueueRunningListener, self);
 	AudioQueuePrime(outputQueue, 0, NULL);
 	AudioQueueStart(outputQueue, NULL);
