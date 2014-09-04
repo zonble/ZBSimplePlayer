@@ -190,7 +190,7 @@ AudioStreamBasicDescription LFPCMStreamDescription()
 	return self;
 }
 
-- (double)framePerSecond
+- (double)packetPerSecond
 {
 	if (streamDescription.mFramesPerPacket) {
 		return streamDescription.mSampleRate / streamDescription.mFramesPerPacket;
@@ -302,7 +302,7 @@ AudioStreamBasicDescription LFPCMStreamDescription()
 		packetCount++;
 	}
 
-	if (readHead == 0 & packetCount > (int)([self framePerSecond] * 12)) {
+	if (readHead == 0 && packetCount > (int)([self packetPerSecond] * 12)) {
 		if (playerStatus.stopped) {
 			self->playerStatus.stopped = NO;
 			AudioConverterReset(converter);
